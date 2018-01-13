@@ -1,6 +1,3 @@
-def turn(board)
-  puts "Please enter 1-9:"
-end
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -8,14 +5,6 @@ def display_board(board)
   puts " #{board[3]} | #{board[4]} | #{board[5]} "
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
-end
-
-def input_to_index(input)
-  index = input.to_i - 1
-end
-
-def move(board,index,char="X")
-  board[index] = char
 end
 
 def valid_move?(board,position)
@@ -27,3 +16,31 @@ def position_taken?(board,position)
   return true if ["X", "O"].include?(board[position])
   raise "#{board[position]} is not a valid move"
 end
+
+def input_to_index(input)
+  index = input.to_i - 1
+end
+
+def move(board,index,char="X")
+  board[index] = char
+end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  i = gets.strip
+  index = input_to_index(i)
+  m = valid_move?(board, index)
+  if m == true
+    move(board, index, char="X")
+  else m == false
+    until m == true
+      puts "Sorry, that was an invalid move. Please enter 1-9:"
+      i = gets.strip
+      index = input_to_index(i)
+      m = valid_move?(board, index)
+      move(board, index, char="X")
+    end
+  end
+  display_board(board)
+end
+
