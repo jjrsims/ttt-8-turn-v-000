@@ -5,3 +5,9 @@ board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 puts "Welcome to Tic Tac Toe!"
 display_board(board)
+
+turn = 0
+while turn < 9
+  puts turn (board)
+  turn += 1
+end
